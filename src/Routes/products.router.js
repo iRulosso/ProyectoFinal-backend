@@ -1,9 +1,14 @@
 import { Router } from "express";
-import ProductManager from '../Manager/ProductManager.js';
+import { GetProducts, GetProductById, AddProduct, DeleteProduct } from "../Controllers/products.controllers.js";
 
 const routerProduct = Router();
-const productManager = new ProductManager('./products.json');
 
+routerProduct.get('/', GetProducts);
+routerProduct.get('/:pid', GetProductById);
+routerProduct.post('/', AddProduct);
+routerProduct.delete('/:pid', DeleteProduct);
+
+/*
 routerProduct.get('/', async (req, res) => {
     try {
         const {limit} = req.query;
@@ -84,6 +89,6 @@ routerProduct.delete('/:pid', async (req, res) => {
     } catch (error) {
 
     }
-});
+});*/
 
 export default routerProduct;

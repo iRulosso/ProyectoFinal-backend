@@ -1,9 +1,13 @@
 import { Router } from "express";
-import CartManager from "../Manager/CartManager.js";
+import { AddCart, GetCartById, GetCarts } from "../Controllers/carts.controller.js";
 
 const routerCart = Router();
-const cartManager = new CartManager('./carts.json');
 
+routerProduct.get('/', GetCarts);
+routerProduct.get('/:cid', GetCartById);
+routerProduct.post('/', AddCart);
+
+/*
 routerCart.post('/', async (req, res) => {
     try {
         const { id, products } = req.body;
@@ -41,5 +45,6 @@ routerCart.get('/:cid', async (req, res) => {
         res.status(404).json({ message: error.message });
     }
 });
+*/
 
 export default routerCart;

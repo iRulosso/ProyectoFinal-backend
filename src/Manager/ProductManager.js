@@ -1,19 +1,24 @@
 import fs from 'fs'
+import { ProductModel } from '../models/product.model.js';
 
 export default class ProductManager {
-    constructor(path) {
-        this.path = path;
-    }
+    /*constructor(model) {
+        this.model = model;
+    }*/
 
     async GetProducts() {
         try {
+            /*
             if (fs.existsSync(this.path)) {
                 const productsFile = await fs.promises.readFile(this.path, 'utf-8');
                 const productsJS = JSON.parse(productsFile);
                 return productsJS
             } else {
                 return []
-            }
+            }*/
+
+            const response = await ProductModel.find();
+            return response;
         } catch (error) {
             console.log(error);
         }
@@ -22,11 +27,16 @@ export default class ProductManager {
 
     async AddProduct(prod) {
         try {
+            /*
             const pro = { ...prod }
             pro.id = await this.obtenerUltimoId() + 1;
             const products = await this.GetProducts();
             products.push(pro);
             await fs.promises.writeFile(this.path, JSON.stringify(products));
+            */
+
+            const response = await ProductModel.create(prod);
+            return response;
         } catch (error) {
             console.log(error);
         }
@@ -34,6 +44,7 @@ export default class ProductManager {
 
     async GetProductById(id) {
         try {
+            /*
             const products = await this.GetProducts();
             const prod = products.find((p) => p.id === id);
             if (!prod) {
@@ -41,7 +52,10 @@ export default class ProductManager {
                 return
             } else {
                 return prod;
-            }
+            }*/
+
+            const response = await ProductModel.findById(id);
+            return response;
         } catch (error) {
             console.log(error);
         }
@@ -49,9 +63,13 @@ export default class ProductManager {
 
     async DeleteProduct(id) {
         try {
+            /*
             let products = await this.GetProducts();
             products = products.filter(prod => prod.id !== id);
             await fs.promises.writeFile(this.path, JSON.stringify(products));
+            */
+            const response = await ProductModel.findByIdAndDelete(id);
+            return response;
         } catch (error) {
             console.log(error);
         }
@@ -59,12 +77,15 @@ export default class ProductManager {
 
     async UpdateProduct(product, id) {
         try {
+            /*
             await this.DeleteProduct(id);
             const updatedProduct = {id: id, ...product}
             const products = await this.GetProducts();
             products.push(updatedProduct);
             await fs.promises.writeFile(this.path, JSON.stringify(products));
-            
+            */
+            await ProductModel.updateOne({_id: id}, product);
+            return product;
         } catch (error) {
             console.log(error);
         }

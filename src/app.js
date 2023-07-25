@@ -4,13 +4,14 @@ import routerCart from './Routes/carts.router.js';
 import handlebars from 'express-handlebars';
 import routerViews from './Routes/views.router.js';
 import { Server } from 'socket.io';
-import ProductManager from './Manager/ProductManager.js';
+import ProductManager from './Daos/products.dao.js';
+import './db/connection.js'
 
 import {dirname} from 'path'
 import { fileURLToPath } from 'url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-const productManager = new ProductManager("./products.json");
+const productManager = new ProductManager();
 const app = express();
 
 app.use(express.json());
