@@ -1,6 +1,6 @@
 import CartManager from "../Daos/carts.dao.js";
 
-const cartManager = new ProductManager();
+const cartManager = new CartManager();
 
 export const GetCarts = async (req, res, next) => {
     try {

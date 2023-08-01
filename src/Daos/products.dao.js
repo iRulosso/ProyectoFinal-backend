@@ -1,10 +1,10 @@
-import { ProductModel } from "./models/product.model";
+import { ProductModel } from "./models/product.model.js"
 
-export default class ProductManager {
+export default class ProductDaoMongoDB {
 
-    async GetProducts() {
+    async GetProducts(page = 1, limit = 5) {
         try {
-            const response = await ProductModel.find();
+            const response = await ProductModel.paginate({}, {page, limit})
             return response;
         } catch (error) {
             console.log(error);

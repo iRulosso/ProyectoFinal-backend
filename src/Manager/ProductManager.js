@@ -1,5 +1,5 @@
 import fs from 'fs'
-import { ProductModel } from '../models/product.model.js';
+import { ProductModel } from '../Daos/models/product.model.js';
 
 export default class ProductManager {
     /*constructor(model) {

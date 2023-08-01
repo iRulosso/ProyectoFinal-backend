@@ -3,9 +3,9 @@ import { AddCart, GetCartById, GetCarts } from "../Controllers/carts.controller.
 
 const routerCart = Router();
 
-routerProduct.get('/', GetCarts);
-routerProduct.get('/:cid', GetCartById);
-routerProduct.post('/', AddCart);
+routerCart.get('/', GetCarts);
+routerCart.get('/:cid', GetCartById);
+routerCart.post('/', AddCart);
 
 /*
 routerCart.post('/', async (req, res) => {

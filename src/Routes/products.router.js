@@ -1,12 +1,21 @@
 import { Router } from "express";
-import { GetProducts, GetProductById, AddProduct, DeleteProduct } from "../Controllers/products.controllers.js";
+import * as controller from '../controllers/products.controllers.js';
 
 const routerProduct = Router();
 
-routerProduct.get('/', GetProducts);
-routerProduct.get('/:pid', GetProductById);
-routerProduct.post('/', AddProduct);
-routerProduct.delete('/:pid', DeleteProduct);
+
+
+const router = Router();
+
+router.get('/all', controller.getAllCtr);
+
+router.get('/id/:id', controller.getByIdCtr);
+
+router.post('/', controller.createCtr);
+
+router.put('/:id', controller.updateCtr);
+
+router.delete('/:id', controller.deleteCtr);
 
 /*
 routerProduct.get('/', async (req, res) => {
